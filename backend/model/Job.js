@@ -12,7 +12,7 @@ const JobSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    discription: {
+    description: {
       type: String,
       required: true,
     },
@@ -45,13 +45,9 @@ const JobSchema = new mongoose.Schema(
     salaryMax: {
       type: Number,
     },
-    location: {
+    location: { 
       city: String,
       country: String,
-    },
-    currency: {
-      type: String,
-      default: "INR",
     },
     skills: {
       type: [String],
