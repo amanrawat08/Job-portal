@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+
+/* CUSTOM COMPONENT CLASSES */
+@layer components {
+  .badge-success {
+    @apply text-white bg-main;
+  }
+
+  .color-main {
+    @apply text-[#032f59];
+  }
+
+  .color-secondary {
+    @apply text-main;
+  }
+
+  .card {
+    @apply border  transition-colors duration-200 hover:border-main;
+  }
+  .bg-color{
+    @apply bg-[#f5f9ff];
+  }
+  .heading {
+    @apply text-4xl font-bold mb-4;
+  }
+
+  .heading-design {
+    @apply text-main;
+  }
+
+  .subTitle {
+    @apply text-lg text-gray-600;
+  }
+}
+
+.categ-btn button{
+  @apply bg-main text-white px-4 py-2 rounded hover:bg-blue-700 transition  ;
+}
+
+.job-card{
+  @apply border p-4 px-8 w-1/5 rounded shadow hover:shadow-lg transition bg-white;
+}
+.job-header{
+  @apply flex justify-between flex-col items-start mb-3;
+}
+.job-card h3{
+  @apply text-2xl font-semibold mb-1;
+}
+.job-card p{
+  @apply text-gray-700;
+}
+
+@tailwind utilities;
+
+
