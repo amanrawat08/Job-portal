@@ -4,17 +4,9 @@ import { MdLocationOn } from "react-icons/md";
 import { jobs } from "../../data/Jobs"; 
 import { locationFilter } from "../../utils/jobLoaction";
 import useDebounce from "../../hooks/useDebounce";
-const JobSearchBar = () => {
-  const [keyword, setKeyword] = useState("");
-  const [location, setLocation] = useState("");
-  const useDebouceKeyword = useDebounce(keyword, 800)
-  const filterJobs = useMemo(() => {
-    return jobs.filter(
-      (job) =>
-        job.title.toLowerCase().includes(keyword.toLowerCase()) &&
-        job.location.toLowerCase().includes(location.toLowerCase()),
-    );
-  },[useDebouceKeyword, location]);
+import { Link } from "react-router-dom";
+const JobSearchBar = ({ keyword, setKeyword, location, setLocation ,filterJobs}) => {
+  
 
   
 
@@ -64,7 +56,7 @@ const JobSearchBar = () => {
             <ul>
                 {
                      filterJobs.map((job,index)=>{
-                        return <li className="" key={index}>{job.title}</li>
+                        return <Link key={job.title}  to={`/jobs?category=${encodeURIComponent(job.title)}`}> <li className="" >{job.title}</li>{console.log(job.title)}</Link> 
                     })
                 }
             </ul>

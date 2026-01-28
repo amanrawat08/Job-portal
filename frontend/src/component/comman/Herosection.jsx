@@ -1,7 +1,7 @@
 
 import JobSearchBar from "./JobSearchBar ";
 
-function Herosection(){
+function Herosection({ keyword, setKeyword, location, setLocation ,filterJobs}){
     return <div className=" bg-[radial-gradient(circle_at_10%_20%,rgba(59,130,246,0.12)_0%,rgba(59,130,246,0)_45%),linear-gradient(135deg,#f0f9ff_0%,#f0fff4_45%,#ffffff_100%)]">
         <div className="max-w-7xl mx-auto  px-8 sm:px-6 lg:px-8 py-16">
                 <div className=" flex items-center justify-center gap-14">
@@ -10,7 +10,7 @@ function Herosection(){
                             <h1 className="text-4xl text font-bold">Take the next step in your career journey.</h1>
                             <p className="text-[14px] mt-2 text-gray-700">Explore opportunities that match your skills and passions, and land the job you've always wanted with JobsPortal.</p>
                            {/* <JobSearch/>*/} 
-                        <JobSearchBar/>
+                        <JobSearchBar keyword={keyword} location = {location} setKeyword={setKeyword} setLocation={setLocation} filterJobs={filterJobs}/>
                             
                         </div>
                         <div className="w-[43%]">

@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { categoryFilter } from "../../utils/jobCategories";
-function BottomHeader() {
-    const [category,setCategory] = useState();
-
-
-    useEffect(()=>{
-        setCategory(categoryFilter)
-    },[categoryFilter])
+import { categoryFilter } from "../../utils/categoryFilter";
+function BottomHeader({category}) {
+    
 
 //console.log(categoryFilter)
      
@@ -28,11 +23,14 @@ transition-all duration-200 ease-out w-[220px]
 "
                             >
                                 {
-                                    categoryFilter?.map((categ,index)=>{
+                                    category?.map((categ,index)=>{
                                         return (
-                                            <li className="hover:text-[#5bb907]  px-7 py-2 border-b-[1px] transition-all duration-150 ease-in-out  " key={index}>
-                                    {categ.title} <span className="text-[#5bb907]">({categ.count})</span>
-                                </li>
+                                            <Link to={`/jobs?category=${encodeURIComponent(categ.title)}` } key={categ.title}>
+                                            
+                                                    <li className="hover:text-[#5bb907]  px-7 py-2 border-b-[1px] transition-all duration-150 ease-in-out  " >
+                                            {categ.title} <span className="text-[#5bb907]">({categ.count})</span>
+                                        </li>
+                                            </Link>
                                         )
                                     })
                                 }

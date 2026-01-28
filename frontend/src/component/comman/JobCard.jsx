@@ -1,6 +1,9 @@
 import { MapPin, Clock, Briefcase } from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const JobCard = ({job}) => {
+  const navigate = useNavigate()
+  
     const {title,company,location,experience,salary,type,description,skills ,id,postedAt} = job
   return (
     <div className="max-w-sm rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-200" key={Number(id)}>
@@ -48,7 +51,7 @@ const JobCard = ({job}) => {
       <div className="mt-4 flex gap-2 flex-wrap ">
         {
             skills.map((skill)=>{
-                return <span className="rounded-md py-3 bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+                return <span  className="rounded-md py-3 bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600" key={skill}>
           {skill}
         </span>
             })
@@ -63,8 +66,8 @@ const JobCard = ({job}) => {
           {salary} 
         </div>
 
-        <button className="rounded-lg bg-blue-100 px-5 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-200 transition-colors">
-          Apply Now
+        <button  className="rounded-lg bg-blue-100 px-5 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-200 transition-colors" onClick={()=>navigate(`/jobs/${job.id}`)}>
+          More Details
         </button>
       </div>
     </div>

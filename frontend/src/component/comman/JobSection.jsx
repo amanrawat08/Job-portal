@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { jobs } from "../../data/Jobs";
 import JobCard from "./JobCard";
+import { Link } from "react-router-dom";
 function JobSection() {
     const [category, setCategory] = useState("all");
     const categoryFilter = Object.entries(
@@ -31,8 +32,10 @@ function JobSection() {
         <div className="categ-job grid grid-cols-4 gap-6">
             {
                 filterJobs.map((job,index)=>{
-                    if(index < 8) return <JobCard key={index} job={job}/>
+                    if(index < 8) return  <JobCard key={index} job={job}/>
+                    
                 })
+
             }
             
         </div>

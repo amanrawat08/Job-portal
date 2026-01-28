@@ -1,11 +1,11 @@
 import BottomHeader from "../comman/BottomHeader";
 import TopHeader from "../comman/TopHeader";
 
-function Navbar(){
+function Navbar({category}){
     return <div>
         <div >
          <TopHeader/>
-        <BottomHeader/>
+        <BottomHeader category={category}/>
         </div>
     </div>
 }
