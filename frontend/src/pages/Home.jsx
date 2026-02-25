@@ -1,5 +1,5 @@
 import Herosection from "../component/comman/Herosection";
-import JobCategory from "../component/comman/JobCategory";
+import JobCategory from "../feature/jobs/JobCategory";
 import JobSection from "../component/comman/JobSection";
 import Search_PostBtn from "../component/comman/Search_PostBtn";
 import CounterArea from "../component/comman/CounterArea";
@@ -7,7 +7,12 @@ import Blog_Section from "../component/comman/Blog_Section";
 import { jobs } from "../data/Jobs";
 import { useState,useMemo } from "react";
 import useDebounce from "../hooks/useDebounce";
+import { useDispatch } from "react-redux";
+import { fetchJobs } from "../redux/JobSlice";
 function Home({category}){
+  const dispatch = useDispatch()
+  dispatch(fetchJobs())
+
 
     const [keyword, setKeyword] = useState("");
       const [location, setLocation] = useState("");
@@ -23,12 +28,15 @@ function Home({category}){
     return <div>
         
         <Herosection keyword={keyword} location = {location} setKeyword={setKeyword} setLocation={setLocation} filterJobs={filterJobs} />
-        <Search_PostBtn/>
-         <JobCategory category = {category}/>
+    {
+      /**  <Search_PostBtn/> */
+    }  
+         <JobCategory  />
         <JobSection/>
         {/* <WorkProcess/>*/}
         <Blog_Section/>
         <CounterArea/>
+        
     </div>
 }
 

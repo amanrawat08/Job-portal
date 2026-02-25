@@ -1,35 +1,65 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Login from "./pages/auth/Login";
+import Login from "./feature/auth/Login";
 import Navbar from "./component/layout/Navbar";
 import Footer from "./component/layout/Footer";
-import Register from "./pages/auth/Register";
-import { categoryFilter } from "./utils/categoryFilter";
- import { useState ,useEffect } from "react";
-import JobsPage from "./pages/JobsPage";
-import JobDetails from "./component/comman/JobDetails";
-function App() {
-      const [category,setCategory] = useState();
+import Register from "./feature/auth/Register";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCategoryFilter } from "./feature/jobs/selectCategoryFilter";
+import { Toaster } from "react-hot-toast";
+import RecuiterHome from "./pages/recuiter/RecuiterHome";
+import CreateJob from "./pages/recuiter/CreateJob";
+import ProtectRoutes from "./feature/auth/ProtectRoutes";
+import ShowPostedJobs from "./pages/recuiter/ShowPostedJobs";
+import DeleteJob from "./pages/recuiter/DeleteJob";
+import EditProfile from "./pages/EditProfile";
+import JobDetails from "./feature/jobs/JobDetails";
+import { useEffect } from "react";
+import { fetchingCateg } from "./redux/CategorySlice";
+import FilterJobs from "./pages/FilterJobs";
+function App() { 
+  const category = useSelector(selectCategoryFilter)
   
-  
-      useEffect(()=>{
-          setCategory(categoryFilter)
-      },[categoryFilter])
-  
+  const dispatch = useDispatch();
+  useEffect(()=>{
+  //  console.log("fgf");
+    
+    dispatch(fetchingCateg());
+  })
   return (
     <>
-      <Navbar category = {category}/>
-    <Routes>
-      <Route path="/" element={<Home category = {category}/>} />
-      <Route path="/login" element={<Login/>} />
-      <Route path="/register" element={<Register/>} />
+      <Navbar category={category} />
+      <Toaster />
+      <Routes>
+        {/*
       <Route path="/jobs" element={<JobsPage/>} />
-      <Route path="/jobs/:jobId" element={<JobDetails/>} />
+      <Route path="/jobs/:jobId" element={<JobDetails/>} /> 
+      */}
+        <Route path="/" element={<Home   />} />
+        <Route path="/home" element={<Home  />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/jobs/jobDetail/:id" element={<JobDetails />} />
+        <Route path="/jobs" element={<FilterJobs />} />
 
-    </Routes>
-        <Footer/>
+        
+        <Route path="/editProfile/:id" element ={ <EditProfile />} />
+        
+        <Route path="/recuiter" element={<ProtectRoutes role="recruiter"><RecuiterHome /></ProtectRoutes>} />
+        <Route path="/createJob" element={<ProtectRoutes role="recruiter"><CreateJob />
+        </ProtectRoutes>} />
+        <Route path="/showPostedJobs" element={<ProtectRoutes role="recruiter"><ShowPostedJobs />
+        </ProtectRoutes>} />
+        <Route path="/createJob/:id" element={<ProtectRoutes role="recruiter"><CreateJob />
+        </ProtectRoutes>} />
+        <Route path="/delete-job/:id" element={<ProtectRoutes role="recruiter"><DeleteJob />
+        </ProtectRoutes>} />
+
+
+
+      </Routes> 
     </>
-    
+
   );
 }
 

@@ -3,42 +3,51 @@ import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
     {
-        name:{
-            type:"String",
-            required:true,
-            trim:true
+        name: {
+            type: "String",
+            required: true,
+            trim: true
         },
-        email:{
-            type:String,
-            required:true,
-            unique:true,
-            lowercase:true
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            lowercase: true
         },
-        password:{
-            type:String,
-            required:true,
-            minlength:6,
-            select:false, // fide password by default
+        password: {
+            type: String,
+            required: true,
+            minlength: 6,
+            select: false, // fide password by default
         },
-        role:{
-            type:String,
-            enum:["jobseeker", "recruiter"],
-            default:"jobseeker"
+        role: {
+            type: String,
+            enum: ["jobseeker", "recruiter"],
+            default: "jobseeker"
         },
-        resume:{
-            type:String,
+        resume: {
+            type: String,
         },
-        company:{
-            type: String // only for recruiters
+        skills: {
+            type: String,
+            index:true
         },
-        profileCompleted:{
-            type:Boolean,
-            default:false
+        contact: {
+            type: String, 
+            trim: true,
+            match: /^[0-9]{10}$/, // for 10-digit numbers
+        },
+        company: {
+            type: String, // only for recruiters
+        },
+        profileCompleted: {
+            type: Boolean,
+            default: false
         }
-         
+
     }
     ,
-    {timestamps:true}
+    { timestamps: true }
 )
 
 export default mongoose.model("User", UserSchema)

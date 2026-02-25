@@ -20,7 +20,7 @@ const JobSchema = new mongoose.Schema(
       type: [String],
       required: true,
     },
-    responsibilies: {
+    responsibilities: {
       type: [String],
     },
     jobType: {
@@ -45,17 +45,23 @@ const JobSchema = new mongoose.Schema(
     salaryMax: {
       type: Number,
     },
-    location: { 
+    location: {
       city: String,
       country: String,
     },
     skills: {
       type: [String],
-      index:true,
+      index: true,
     },
     deadline: {
       type: Date,
     },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
+
     applicationsCount: {
       type: Number,
       default: 0,
@@ -71,9 +77,9 @@ const JobSchema = new mongoose.Schema(
       ref: "User", //"User" creates relationship
       required: true,
     },
-    isActive:{
-        type:Boolean,
-        default:true
+    isActive: {
+      type: Boolean,
+      default: true
     }
   },
   { timestamps: true }

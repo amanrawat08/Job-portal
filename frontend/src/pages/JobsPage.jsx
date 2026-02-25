@@ -1,7 +1,7 @@
 import { useMemo } from "react"
 import { useSearchParams } from "react-router-dom"
 import { jobs } from "../data/Jobs"
-import JobCard from "../component/comman/JobCard"
+import JobCard from "../feature/jobs/JobCard"
 
 const JobsPage = ()=>{
     const [param] = useSearchParams()

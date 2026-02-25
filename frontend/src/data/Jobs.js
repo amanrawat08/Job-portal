@@ -10,7 +10,7 @@ export const jobs = [
     skills: ["React", "JavaScript", "CSS"],
     description:
       "We are looking for a Frontend Developer with strong React skills to build modern web applications.",
-    postedAt: "2 days ago",
+    createdAt: "2 days ago",
   },
   {
     id: "2",
@@ -23,7 +23,7 @@ export const jobs = [
     skills: ["Node.js", "Express", "MongoDB"],
     description:
       "Responsible for building scalable backend APIs and managing databases.",
-    postedAt: "5 days ago",
+    createdAt: "5 days ago",
   },
   {
     id: "3",
@@ -36,7 +36,7 @@ export const jobs = [
     skills: ["MongoDB", "Express", "React", "Node.js"],
     description:
       "Entry-level MERN developer role with exposure to real-world projects.",
-    postedAt: "1 week ago",
+    createdAt: "1 week ago",
   },
   {
     id: "4",
@@ -49,7 +49,7 @@ export const jobs = [
     skills: ["Figma", "Adobe XD", "UI Design"],
     description:
       "Design clean and user-friendly interfaces for web and mobile products.",
-    postedAt: "3 days ago",
+    createdAt: "3 days ago",
   },
   {
     id: "5",
@@ -62,7 +62,7 @@ export const jobs = [
     skills: ["React", "Node.js", "MongoDB", "REST API"],
     description:
       "Looking for a Full Stack Developer to design and develop end-to-end web solutions.",
-    postedAt: "1 day ago",
+    createdAt: "1 day ago",
   },
   {
     id: "6",
@@ -75,7 +75,7 @@ export const jobs = [
     skills: ["React", "HTML", "CSS", "JavaScript"],
     description:
       "Great opportunity for freshers to start their career as a React Developer.",
-    postedAt: "4 days ago",
+    createdAt: "4 days ago",
   },
   {
     id: "7",
@@ -88,7 +88,7 @@ export const jobs = [
     skills: ["JavaScript", "Node.js", "Microservices"],
     description:
       "Work on cloud-based applications with a focus on scalability and performance.",
-    postedAt: "6 days ago",
+    createdAt: "6 days ago",
   },
   {
     id: "8",
@@ -100,7 +100,7 @@ export const jobs = [
     type: "Full Time",
     skills: ["React Native", "Redux", "API Integration"],
     description: "Build cross-platform mobile applications using React Native.",
-    postedAt: "2 weeks ago",
+    createdAt: "2 weeks ago",
   },
   {
     id: "9",
@@ -113,7 +113,7 @@ export const jobs = [
     skills: ["HTML", "CSS", "Tailwind", "JavaScript"],
     description:
       "Create responsive and visually appealing UI components for web applications.",
-    postedAt: "1 week ago",
+    createdAt: "1 week ago",
   },
   {
     id: "10",
@@ -126,6 +126,6 @@ export const jobs = [
     skills: ["JavaScript", "React Basics", "Git"],
     description:
       "Internship opportunity for students to work on live projects and learn modern web technologies.",
-    postedAt: "3 days ago",
+    createdAt: "3 days ago",
   },
 ];

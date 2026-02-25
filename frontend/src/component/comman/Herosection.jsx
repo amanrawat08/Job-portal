@@ -1,5 +1,5 @@
 
-import JobSearchBar from "./JobSearchBar ";
+import JobSearchBar from "../../feature/jobs/JobSearchBar ";
 
 function Herosection({ keyword, setKeyword, location, setLocation ,filterJobs}){
     return <div className=" bg-[radial-gradient(circle_at_10%_20%,rgba(59,130,246,0.12)_0%,rgba(59,130,246,0)_45%),linear-gradient(135deg,#f0f9ff_0%,#f0fff4_45%,#ffffff_100%)]">

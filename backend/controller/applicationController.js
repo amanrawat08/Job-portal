@@ -3,19 +3,26 @@ import Job from "../model/Job.js";
 
 export const applyJob = async (req, res) => {
   try {
-    const userId = req.user.id;
+     
+    
+    const jobId = req.body.jobid;
+    const userId = req.body.user._id;
+ //   console.log(req.body);
+    
+     
+    
     //const userId = req.user.id;
 
     //1) Validate for job and resume if not exist
-    if (!userId) {
+    if (!jobId) {
       return res.status(400).send({
         status: "Fail",
-        message: "Job and Resume is required",
+        message: "Job is required",
       });
     }
 
     //2) Check if really job exist in DB;
-    const job = await Job.findById(userId);
+    const job = await Job.findById(jobId);
     if (!job) {
       return res.status(400).send({
         status: "Fail",
@@ -23,26 +30,29 @@ export const applyJob = async (req, res) => {
       });
     }
 
+    
+    
     //3) Check if allready applied
     const isDupApplication = await Application.findOne({
-      job: userId,
+      job: jobId,
       applicant: userId,
     });
 
     if (isDupApplication) {
-      res.status(400).send({
+      return res.status(400).json({
         status: "Fail",
         message: "Already Applied for the Job",
       });
     }
-
+     
     //4) Create Application
     const application = await Application.create({
-      job: userId,
+      job: jobId,
       applicant: userId,
-      resume,
+      
     });
-
+     
+    
     res.status(200).send({
       status: "Successfull",
       message: "Job Applied Successfully",

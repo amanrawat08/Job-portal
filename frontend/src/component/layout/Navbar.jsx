@@ -5,7 +5,8 @@ function Navbar({category}){
     return <div>
         <div >
          <TopHeader/>
-        <BottomHeader category={category}/>
+         
+        <BottomHeader />
         </div>
     </div>
 }

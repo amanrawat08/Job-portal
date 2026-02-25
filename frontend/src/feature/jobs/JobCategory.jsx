@@ -1,7 +1,22 @@
 
 import {useNavigate} from 'react-router-dom'
-function JobCategory({category}) { 
-    const navigate = useNavigate();
+import { fetchJobCategories } from '../../redux/jobCategorySlice ';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+function JobCategory() { 
+  const dispatch = useDispatch()
+  const { categ, loading } = useSelector(
+    (state) => state.CategorySlice
+  );
+
+  console.log();
+  
+
+  useEffect(() => { 
+  }, [dispatch]);
+  const navigate = useNavigate(); 
+ // console.log(data.categories);
+  
   return (
     <section>
       <div className="max-w-7xl mx-auto  px-8 sm:px-6 lg:px-8 py-12 ">
@@ -11,10 +26,10 @@ function JobCategory({category}) {
         </div>
         <div className="categ-job grid grid-cols-4 gap-6 justify-between">
             {
-                 category?.map((job, index)=>{
+                 categ?.map((job, index)=>{
                     if (index > 7) return 
                     return <div className=" card border cursor-pointer basis-1/5 border-[rgb(236 236 236)] rounded-sm px-5 py-8 categ-card" key={index} 
-                    onClick={()=>navigate(`/jobs?category=${encodeURIComponent(job.title)}`)}
+                    onClick={()=>navigate(`/jobs?category=${encodeURIComponent(job.slug)}`)}
                     >
                                 
                     <div>
@@ -22,9 +37,9 @@ function JobCategory({category}) {
                     </div>
                     <div className="">
  
-                        <h4 className="font-bold text-base pt-3 color-main " >{job.title}</h4>
+                        <h4 className="font-bold text-base pt-3 color-main " >{job.name}</h4>
                         <span className="text-sm text-gray-500 pt-4">
-                        Job Available: <span className="color-secondary font-bold">{job.count}</span> 
+                        Job Available: <span className="color-secondary font-bold">{job.jobsAvailable}</span> 
 
                         </span>
                     </div>

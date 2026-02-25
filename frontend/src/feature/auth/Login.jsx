@@ -1,13 +1,57 @@
 import { FaCheckCircle } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import { FaLinkedinIn } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
+import axios from "axios";
+import { LOGIN_USER_URL } from "../../utils/comman";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "../../redux/userSlice";
+import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        LOGIN_USER_URL,
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        },
+      ); 
+      localStorage.setItem("token", res.data.token);
+      const { _id, name: user, email: userEmail, role, company } = res?.data?.user; 
+      toast.success(res?.data?.message);
+      console.log(res?.data?.user);
+      
+      dispatch(setUserDetails(res?.data?.user));
+      setEmail("");
+      setPassword("");
+      if (role === "recruiter") {
+        navigate('/recuiter') 
+      } else { 
+        navigate('/home');
+      }
+      toast.success(res.data.message);
+    } catch (error) {
+    //  console.log(error.response); // 👈 IMPORTANT
+
+      toast.error(
+        error?.response?.data?.message || "Login failed"
+      );
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 px-6">
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
         {/* LEFT CONTENT */}
         <div className="hidden lg:block">
           <span className="inline-block px-6 py-2 mb-6 text-sm font-semibold tracking-wide text-blue-600 bg-blue-100 rounded-full">
@@ -19,8 +63,8 @@ const Login = () => {
           </h1>
 
           <p className="text-slate-600 max-w-lg mb-8">
-            Access personalised recommendations, manage your applications,
-            and stay ahead with instant updates from top employers.
+            Access personalised recommendations, manage your applications, and
+            stay ahead with instant updates from top employers.
           </p>
 
           <ul className="space-y-4 text-slate-700">
@@ -48,7 +92,7 @@ const Login = () => {
             Enter your details below or continue with a social account.
           </p>
 
-          {/* Social Login */}
+          {/* Social Login
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <button className="flex items-center justify-center gap-3 w-full border border-slate-300 rounded-lg py-2 hover:bg-slate-50 transition">
               <FcGoogle className="text-xl" />
@@ -60,21 +104,17 @@ const Login = () => {
               <span className="text-sm font-medium">Login with LinkedIn</span>
             </button>
           </div>
-
-          {/* Divider */}
-          <div className="flex items-center gap-4 my-6">
-            <div className="flex-1 h-px bg-slate-200" />
-            <span className="text-sm text-slate-400">OR</span>
-            <div className="flex-1 h-px bg-slate-200" />
-          </div>
+ */}
 
           {/* Form */}
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={handleLogin}>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">
                 Email address
               </label>
               <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 placeholder="name@email.com"
                 className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -86,21 +126,26 @@ const Login = () => {
                 <label className="text-sm font-medium text-slate-700">
                   Password
                 </label>
-                <span className="text-sm text-blue-600 cursor-pointer hover:underline">
+                {/*
+                  <span className="text-sm text-blue-600 cursor-pointer hover:underline">
                   Forgot password?
                 </span>
+              */}
               </div>
               <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="********"
+                name="password"
                 className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
-            <div className="flex items-center gap-2 text-sm text-slate-600">
+            {/*<div className="flex items-center gap-2 text-sm text-slate-600">
               <input type="checkbox" className="rounded" />
               Keep me signed in
-            </div>
+            </div> */}
 
             <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow-lg transition">
               Sign In
@@ -109,7 +154,10 @@ const Login = () => {
 
           <p className="text-center text-sm text-slate-600 mt-6">
             New to JobsPortal?{" "}
-            <Link to="/register" className="text-blue-600 font-medium cursor-pointer hover:underline">
+            <Link
+              to="/register"
+              className="text-blue-600 font-medium cursor-pointer hover:underline"
+            >
               Create an account
             </Link>
           </p>
