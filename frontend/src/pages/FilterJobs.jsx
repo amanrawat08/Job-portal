@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Banner from "../component/comman/Banner"
-import FiltersSection from "../component/comman/FiltersSection"
-import { useSearchParams } from "react-router-dom";
+import FiltersSection from "../component/comman/FiltersSection" 
 import JobCard from "../feature/jobs/JobCard";
 const FilterJobs = () => {
 
@@ -9,13 +8,13 @@ const FilterJobs = () => {
 
   const [jobs, setJobs] = useState([])
 
- // console.log(jobs);
+  // console.log(jobs);
 
 
 
   return (
     <div>
-      <Banner />
+      <Banner data={"Search Jobs"}/>
       <div className="max-w-7xl mx-auto  px-8 sm:px-6 lg:px-8 py-12 flex">
         <div className="flex w-full gap-6 ">
           <FiltersSection setJobs={setJobs} />

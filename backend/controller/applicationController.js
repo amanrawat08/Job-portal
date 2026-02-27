@@ -71,7 +71,7 @@ export const getMyApplications = async (req, res) => {
     const userId = req.user.id;
 
     const applications = await Application.find({ applicant: userId })
-      .populate("job", "title company location jobType")
+      .populate("job", "title company location jobType ")
       .sort({ createdAt: -1 });
 
     return res.status(200).send({
@@ -90,8 +90,14 @@ export const getMyApplications = async (req, res) => {
 
 export const getApplicantForJob = async (req, res) => {
   try {
-    const { jobId } = req.params;
+   // console.log(req);
+    
+  // console.log(req.params.id);
+    const { id:jobId } = req.params;
+    
     const recruiterId = req.user.id;
+   // console.log(recruiterId);
+    
     //find job exist in db
     const job = await Job.findById(jobId);
     if (!job) {
@@ -99,7 +105,8 @@ export const getApplicantForJob = async (req, res) => {
         message: "Job not found",
       });
     }
-
+      
+     
     // check is recuiter is asking for the data;
     if (recruiterId !== job.postedBy.toString()) {
       return res.status(403).json({
@@ -107,12 +114,22 @@ export const getApplicantForJob = async (req, res) => {
         message: "You are not allowed to view applicants for this job",
       });
     }
+ 
+    
+   
 
     // fetch the data
-
-    const applicants = await Job.find({ job: jobId })
+    const applicants = await Application.find({ job: jobId })
       .populate("applicant", "name email resume")
+      .populate("job", "title")
       .sort({ createdAt: -1 });
+ 
+
+      console.log(applicants);
+      
+       
+      
+
 
     return res.status(200).json({
       success: true,
@@ -130,20 +147,29 @@ export const getApplicantForJob = async (req, res) => {
 
 export const updateApplicationStatus = async (req, res) => {
   try {
-    const { applicationId } = req.params;
-    const { status } = req.body;
-
+    const { id:applicationId } = req.params;
+    const { status ,userId} = req.body;
+    
+    
+    
+    
+    
+    
     //if it includes status which is called....
-    //const allowedStatus = ["Applied", "Shortlisted", "Rejected", "Hired"];
-    if (!Application.status.includes(status)) {
+    const allowedStatus = ["applied", "shortlisted", "rejected", "hired"];
+    if (!allowedStatus.includes(status)) {
       return res.status(400).json({
         success: false,
         message: "Invalid status value",
       });
     }
-
+    
+    
     //find the application;
-    const application = await Application.find(applicationId).populate("job");
+    const application = await Application.findOne({job:applicationId, applicant:userId});
+     console.log(applicationId, userId);
+     
+    
     if (!application) {
       return res.status(400).json({
         success: false,
@@ -151,26 +177,31 @@ export const updateApplicationStatus = async (req, res) => {
       });
     }
 
+     
     //if authorized user only
-    if (application.job.postedBy.toString() !== req.user.id) {
+    {
+      /*if (application.job.postedBy.toString() !== req.user.id) {
       return res.status(403).json({
         success: false,
         message: "Not authorized to update this application",
       });
     }
-
+ */
+    }
+    console.log(application);
+    
     application.status = status;
     await application.save();
-
+    console.log(application);
     res.status(200).json({
       success: true,
       message: "Application status updated",
       application,
     });
   } catch (error) {
-    return req.status(500).send({
+    return res.status(500).send({
       status: "Fail",
-      message: error.message,
+      message: error,
     });
   }
 };

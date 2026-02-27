@@ -8,14 +8,13 @@ import toast from 'react-hot-toast';
 import { setUserDetails } from "../redux/userSlice";
 const EditProfile = () => {
   const user = useSelector((state) => state?.user?.user);
-  console.log(user.name);
 
   const [name, setName] = useState(user?.name);
   const [email, setEmail] = useState(user?.email);
   const [company, setCompany] = useState(user?.company);
   const [contact, setContact] = useState(user?.contact);
-  const [skills, setSkills] = useState(["html", "css", "js"]);
-  const [resume, setResume] = useState()
+  const [skills, setSkills] = useState(user?.skills);
+  const [resume, setResume] = useState(user?.resume)
   const dispatch = useDispatch();
 
 
@@ -29,36 +28,37 @@ const EditProfile = () => {
     try {
       // console.log(id, token);
 
-      try {
-        const res = await axios.put(`${UPDATE_USER_URL}`, {
-          id: user._id,
-          company: company,
-          contact: contact || null,
-          name: name,
-          skills: skills.join(", "),
-          role: user.role
-        }, {
-          "withCredentials": true,
-          headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
-          }
+      const formData = new FormData();
+      formData.append("id",user._id)
+      formData.append("company",company)
+      formData.append("contact",contact || null)
+      formData.append("name",name)
+      formData.append("skills",skills)
+      formData.append("role",  user.role) 
+      if(resume) formData.append("resume", resume || null)
+      const res = await axios.put(`${UPDATE_USER_URL}`, formData, {
+        "withCredentials": true,
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         }
-        )
-        console.log(res?.data?.user);
-        toast.success(res?.data?.message)
-
-        dispatch(setUserDetails(res?.data?.user))
-      } catch (error) {
-        console.log(error);
-
       }
+      )
+      //   console.log(resume);
+      
+      console.log(res?.data?.user);
+      toast.success(res?.data?.message)
+
+      dispatch(setUserDetails(res?.data?.user))
+
 
     } catch (error) {
-      console.log(error);
+      console.log(error?.response?.data?.message || error);
 
     }
   }
+
+
 
 
   return (
@@ -120,7 +120,7 @@ const EditProfile = () => {
                 <label name="role">
                   Upload Resume
                 </label> <br />
-                <input className="w-full border pl-3 py-2 active:border-0" name="name" id="name" type="file"
+                <input className="w-full border pl-3 py-2 active:border-0" name="name" id="name" type="file" placeholder="daf"
                   accept=".pdf,.doc,.docx" onChange={(e) => setResume(e.target.files[0])
                   } />
               </div>
@@ -130,7 +130,8 @@ const EditProfile = () => {
                 <label name="skills">
                   Skills
                 </label> <br />
-                {console.log(skills)}
+                {console.log(skills)
+                }
                 <input className="w-full border pl-3 py-2 active:border-0" placeholder="Enter skills seperated by commas" type="text" name="skills" id="skills" value={skills} onChange={(e) => setSkills([e.target.value])} />
               </div>
             }

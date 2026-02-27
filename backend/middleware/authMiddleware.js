@@ -3,6 +3,7 @@ import User from "../model/User.js";
 
 export const protect = async(req,res,next)=>{
     try {
+      
         
         let token; 
         if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")){
@@ -20,7 +21,7 @@ export const protect = async(req,res,next)=>{
         req.user = await User.findById(decoded.id).select("-password");
         
         
-        
+          
         
         next();
         

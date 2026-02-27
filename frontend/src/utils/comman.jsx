@@ -11,3 +11,6 @@ export const CLOUD_API_SECRET_KEY = "Kd9-hgtxnMpX1ZQt6aew0VT10pk"
 
 //application routes
 export const APPLY_JOB_URL = "http://localhost:3000/api/application/apply";
+export const APPLICANT_JOB_URL = "http://localhost:3000/api/application/getApplications";
+export const UPDATE_APPLICANT_STATUS_URL = "http://localhost:3000/api/application/updateApplicantDetails";
+export const GET_MY_APPLICATION_STATUS_URL = "http://localhost:3000/api/application/my";

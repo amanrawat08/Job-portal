@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./feature/auth/Login";
-import Navbar from "./component/layout/Navbar";
-import Footer from "./component/layout/Footer";
+import Navbar from "./component/layout/Navbar"; 
 import Register from "./feature/auth/Register";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategoryFilter } from "./feature/jobs/selectCategoryFilter";
@@ -17,13 +16,13 @@ import JobDetails from "./feature/jobs/JobDetails";
 import { useEffect } from "react";
 import { fetchingCateg } from "./redux/CategorySlice";
 import FilterJobs from "./pages/FilterJobs";
+import ShowApplicantPopUp from "./component/comman/ShowApplicantPopUp"; 
+import ViewJobApplied from "./pages/ViewJobApplied";
 function App() { 
   const category = useSelector(selectCategoryFilter)
   
   const dispatch = useDispatch();
   useEffect(()=>{
-  //  console.log("fgf");
-    
     dispatch(fetchingCateg());
   })
   return (
@@ -53,6 +52,10 @@ function App() {
         <Route path="/createJob/:id" element={<ProtectRoutes role="recruiter"><CreateJob />
         </ProtectRoutes>} />
         <Route path="/delete-job/:id" element={<ProtectRoutes role="recruiter"><DeleteJob />
+        </ProtectRoutes>} />
+        <Route path="/showPostedJobs/applicant/:id" element={<ProtectRoutes role="recruiter"><ShowApplicantPopUp />
+        </ProtectRoutes>} />
+        <Route path="/userJobApplied/:id" element={<ProtectRoutes role="jobseeker"><ViewJobApplied />
         </ProtectRoutes>} />
 
 

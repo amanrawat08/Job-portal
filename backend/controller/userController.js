@@ -106,7 +106,9 @@ export const loginUser = async (req, res) => {
         email: user.email,
         role: user.role,
         company: user.company,
-        contact: user.contact || ""
+        contact: user.contact || "",
+        resume: user.resume || "",
+        skills: user.skills || []
       },
     });
   } catch (err) {
@@ -124,6 +126,15 @@ export const updateUserData = async (req, res) => {
 
 
     const { name, contact, company, id, skills } = req.body;
+
+
+
+    console.log(req.file);
+
+
+
+
+
     if (!name || !contact) {
       res.status(400).json({
         status: false,
@@ -131,14 +142,28 @@ export const updateUserData = async (req, res) => {
       })
     }
 
+    const userupdate = {
+      name,
+      contact: Number(contact),
+      company,
+      skills,
+    };
+
+    if (req.file) {
+      userupdate.resume = req.file.path; // Cloudinary or local path
+    }
+     
+
     const user = await User.findByIdAndUpdate(
-      id, {
-      name, contact: Number(contact), company, skills: skills
-    }, {
+      id, userupdate, {
       new: true,
       runValidators: true,
-    }
-    );
+    })
+
+
+
+    console.log(user);
+    
 
     if (!user) {
       res.status(401).json({

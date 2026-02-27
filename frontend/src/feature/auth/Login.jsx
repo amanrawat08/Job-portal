@@ -27,7 +27,9 @@ const Login = () => {
         },
       ); 
       localStorage.setItem("token", res.data.token);
-      const { _id, name: user, email: userEmail, role, company } = res?.data?.user; 
+      console.log( res?.data?.user);
+      
+  //    const { _id, name: user, email: userEmail, role, company } = res?.data?.user; 
       toast.success(res?.data?.message);
       console.log(res?.data?.user);
       

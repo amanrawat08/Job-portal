@@ -35,7 +35,7 @@ const Register = () => {
       } (formData);
 
       const res = await axios.post(`${REGISTER_USER_URL}`, formData, {
-        withCredentials: true,
+        withCredentials: true, 
       });
 
       console.log(res);

@@ -21,7 +21,7 @@ const applicationSchema = new mongoose.Schema(
             type:String,
             enum:["applied","shortlisted", "rejected", "hired"],
             default:"applied"
-        }
+        },
     },
     {timestamp:true}
 )
