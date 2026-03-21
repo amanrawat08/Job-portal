@@ -9,7 +9,7 @@ const app = express();
 
  
 app.use(cors({
-  origin: "https://job-portal-web-coral.vercel.app/",
+  origin: "https://job-portal-web-coral.vercel.app",
   credentials: true
 }));
 app.use(express.json());
