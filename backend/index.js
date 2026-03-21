@@ -1,12 +1,20 @@
 import express from "express";
 import applicationRouter from "./routes/applicationRoutes.js";
-import userrouter from "./routes/userRoutes.js";
+import userrouter from "./routes/userRoutes.js"; 
 import connectDB from "./config/db.js";
-import { protect } from "./middleware/authMiddleware.js";
+import cors from "cors"; 
+import jobRouter from './routes/JobRoutes.js';
+import categRouter from './routes/CategoryRoutes.js';
 const app = express();
 
-
+ 
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 console.log(process.env.PORT)
 //Connect DB
 connectDB();
@@ -15,7 +23,9 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/api/application", applicationRouter);
-app.use("/api/users",userrouter);
+app.use("/api/users",userrouter); 
+app.use("/api/jobs",jobRouter); 
+app.use("/api/category",categRouter); 
 
 
 const PORT = 3000; 

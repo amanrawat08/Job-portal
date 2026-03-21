@@ -15,13 +15,13 @@ const applicationSchema = new mongoose.Schema(
         },
         resume:{
             type:String,
-            required:true
+           // required:true
         },
         status:{
             type:String,
             enum:["applied","shortlisted", "rejected", "hired"],
             default:"applied"
-        }
+        },
     },
     {timestamp:true}
 )
