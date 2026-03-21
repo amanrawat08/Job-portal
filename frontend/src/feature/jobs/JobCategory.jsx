@@ -37,11 +37,17 @@ function JobCategory() {
                     </div>
                     <div className="">
  
-                        <h4 className="font-bold text-base pt-3 color-main " >{job.name}</h4>
-                        <span className="text-sm text-gray-500 pt-4">
-                        Job Available: <span className="color-secondary font-bold">{job.jobsAvailable}</span> 
-
-                        </span>
+                        <h4 className="font-semibold text-base pt-3 color-main " >{job.name}</h4>
+                        {
+                          /*
+                          
+                          <span className="text-sm text-gray-500 pt-4">
+                          Job Available: <span className="color-secondary font-bold">{job.jobsAvailable}</span> 
+  
+                          </span>
+                          
+                          */
+                        }
                     </div>
             </div>
                  })

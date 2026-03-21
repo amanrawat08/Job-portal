@@ -17,7 +17,7 @@ const ViewJobApplied = () => {
             }); 
             
             setApplication(res.data.applications);
-
+            
         } catch (error) {
             console.log(error);
 

@@ -4,74 +4,13 @@ import { FaXTwitter } from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer className="bg-white border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        {/* Top Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10">
-          {/* Logo */}
-          <div>
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-indigo-600 rounded-full" />
-              <span className="text-lg font-semibold">Wave</span>
-            </div>
-          </div>
-
-          {/* Solutions */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">
-              Solutions
-            </h3>
-            <ul className="space-y-3 text-gray-600 text-sm">
-              <li>Marketing</li>
-              <li>Analytics</li>
-              <li>Automation</li>
-              <li>Commerce</li>
-              <li>Insights</li>
-            </ul>
-          </div>
-
-          {/* Support */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">
-              Support
-            </h3>
-            <ul className="space-y-3 text-gray-600 text-sm">
-              <li>Submit ticket</li>
-              <li>Documentation</li>
-              <li>Guides</li>
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">
-              Company
-            </h3>
-            <ul className="space-y-3 text-gray-600 text-sm">
-              <li>About</li>
-              <li>Blog</li>
-              <li>Jobs</li>
-              <li>Press</li>
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">
-              Legal
-            </h3>
-            <ul className="space-y-3 text-gray-600 text-sm">
-              <li>Terms of service</li>
-              <li>Privacy policy</li>
-              <li>License</li>
-            </ul>
-          </div>
-        </div>
+      <div className="max-w-7xl mx-auto  ">
 
         {/* Divider */}
-        <div className="border-t border-gray-200 my-12" />
+        <div className="pt-10 " />
 
         {/* Newsletter */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 max-w-7xl mx-auto  px-8 sm:px-6 lg:px-8 py-12 ">
           <div>
             <h3 className="text-sm font-semibold text-gray-900">
               Subscribe to our newsletter

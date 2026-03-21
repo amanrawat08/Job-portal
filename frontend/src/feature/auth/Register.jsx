@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { REGISTER_USER_URL } from "../../utils/comman";
@@ -13,6 +13,7 @@ const Register = () => {
   const [company, setCompany] = useState("");
   const [resume, setResume] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -140,7 +141,7 @@ const Register = () => {
             </div>
           }
 
-          <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow-lg transition">
+          <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow-lg transition" onClick={()=>navigate("/login")}>
             Create Account
           </button>
         </form>

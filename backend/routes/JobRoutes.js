@@ -1,9 +1,10 @@
 import express from "express";
 import { authorize } from "../middleware/authorize.js";
 import { protect } from "../middleware/authMiddleware.js";
-import { createJob, getAllJobs, getJobById, updateJob, deleteJob, filterJob, getJobsRelatedToRecuiter, getTrendingCategories, fetchJobById, getFilteredjobs } from "../controller/jobController.js";
+import { createJob, getAllJobs, getJobById, updateJob, deleteJob, filterJob, getJobsRelatedToRecuiter, getTrendingCategories, fetchJobById, getFilteredjobs, getJobByCategoryID, getCategoryWithJobs } from "../controller/jobController.js";
 const Router = express.Router();
  
+Router.get('/getCategoryWithJobs', getCategoryWithJobs);
 Router.post("/createJob" ,protect,  authorize("recruiter"), createJob);
 Router.get("/getPostedJobs",protect,authorize("recruiter") , getJobsRelatedToRecuiter);
 Router.delete("/delete/:id", protect ,authorize("recruiter") , deleteJob);
@@ -15,6 +16,7 @@ Router.put("/:id", protect,  authorize("recruiter"), updateJob);
 Router.get("/search", filterJob);
 Router.get("/fetchJob/:id", fetchJobById);
 Router.get('/', getAllJobs);
+Router.get('/getJobByCategories/:id', getJobByCategoryID);
 
 
 export default Router;

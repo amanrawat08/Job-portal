@@ -1,20 +1,31 @@
+
 import { useEffect, useMemo, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { MdLocationOn } from "react-icons/md";
-import { jobs } from "../../data/Jobs"; 
-import { locationFilter } from "../../utils/jobLoaction";
-import useDebounce from "../../hooks/useDebounce";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-const JobSearchBar = ({ keyword, setKeyword, location, setLocation ,filterJobs}) => {
-  
+const JobSearchBar = () => {
 
-  
+  const category = useSelector((state) => state.CategorySlice.categ);
+ // console.log(category);
 
+
+
+
+
+  const [keyword, setKeyword] = useState();
+  const jobFilter = useMemo(() => {
+    if(!keyword) return null;
+      return category.filter((job)=>job.name.toLowerCase().includes(keyword.toLowerCase()))
+  }, [keyword]);
+  useEffect(() => {
+ //   console.log(jobFilter);
+  }, [keyword])
   return (
-    <div className="max-w-5xl mt-5 mx-auto bg-white/80 backdrop-blur-md shadow-lg rounded-2xl p-4">
+    <div className="max-w-4xl mt-5   bg-white/80 backdrop-blur-md md:w-[70%] shadow-lg rounded-2xl p-4">
       <div className="flex flex-col md:flex-row items-center gap-4">
         {/* Search Input */}
-        <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 w-full md:w-[45%] shadow-sm">
+        <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 w-full md:w-[100%] shadow-sm">
           <FiSearch className="text-gray-400 text-xl" />
           <input
             type="text"
@@ -24,7 +35,7 @@ const JobSearchBar = ({ keyword, setKeyword, location, setLocation ,filterJobs})
           />
         </div>
 
-        {/* location Select */}
+        {/* location Select 
         <div className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 w-full md:w-[35%] shadow-sm">
           <MdLocationOn className="text-gray-400 text-xl" />
           <select
@@ -41,29 +52,32 @@ const JobSearchBar = ({ keyword, setKeyword, location, setLocation ,filterJobs})
             })}
           </select>
         </div>
-        
+        */}
         {/* Search Button */}
-        <button
-          className="w-full md:w-[20%] flex items-center justify-center bg-green-500 hover:bg-green-600 transition text-white rounded-xl py-3"
-          
-        >
-          <FiSearch className="text-2xl" />
-        </button>
+          {/**
+           * 
+           <button
+             className="w-full md:w-[20%] flex items-center justify-center bg-green-500 hover:bg-green-600 transition text-white rounded-xl py-3"
+           >
+           <FiSearch className="text-2xl" />
+           </button>
+           * 
+           */}
 
-        {/* listing jobs */}
+        {/* listing jobs  */}
         {
-            keyword && <div className="absolute bottom-[-40px] border  bg-white p-2 right-40 left-4 top-200">
+            keyword && jobFilter.length > 0 && <div className="absolute bottom-[-40px] border  bg-white p-2 right-40 left-4 top-200">
             <ul>
                 {
-                     filterJobs.map((job,index)=>{
-                        return <Link key={job.title}  to={`/jobs?category=${encodeURIComponent(job.title)}`}> <li className="" >{job.title}</li>{console.log(job.title)}</Link> 
+                     jobFilter.map((job,index)=>{
+                        return <Link key={job.name}  to={`/jobs?category=${encodeURIComponent(job.slug)}`}> <li className="" >{job.name}</li> </Link> 
                     })
                 }
             </ul>
         </div>
         }
-        
-      </div> 
+       
+      </div>
     </div>
   );
 };

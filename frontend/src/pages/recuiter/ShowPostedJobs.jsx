@@ -1,13 +1,10 @@
 
 import { useDispatch, useSelector } from "react-redux";
-import { MdDelete } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useRecuiterJobs from "../../hooks/useRecuiterJobs";
 import { useCallback, useState } from "react";
 import { setEditJobDetails } from "../../redux/RecuiterJobSlice";
 import UploadJobCard from "./UploadJobCard";
-import ShowApplicantPopUp from "../../component/comman/ShowApplicantPopUp";
 
 const ShowPostedJobs = () => {
   useRecuiterJobs();
@@ -20,7 +17,7 @@ const ShowPostedJobs = () => {
   const handleData = useCallback((data, _id) => {
     dispatch(setEditJobDetails(data)) 
     navigate(`/createJob/${_id}`);
-  }, [dispatch]) 
+  }, [dispatch, jobs]) ;
   
   return (
     <div className="my-14">

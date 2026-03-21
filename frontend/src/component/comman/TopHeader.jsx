@@ -8,7 +8,7 @@ function TopHeader() {
       <div className="max-w-7xl mx-auto  px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         <h3 className="flex-1 text-2xl font-medium ">Welcome to Job Portal !!!</h3>
         <div className="h-20 text-center flex-1 flex items-center justify-center">
-          <img src="logo.png" className="h-full" alt="" />
+          <img src="logo.png" className="h-full p-2" alt="" />
         </div>
         <div className="flex-1 text-end">
           <ul className="flex items-end justify-end gap-7">

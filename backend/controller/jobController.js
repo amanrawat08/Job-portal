@@ -485,3 +485,58 @@ export const getFilteredjobs = async (req, res) => {
     })
   }
 }
+
+//get job by categ id;
+
+export const getJobByCategoryID = async (req, res) => {
+  const { id } = req.params;
+  //console.log(id);
+
+  try {
+    if (!id) {
+      return res.status(400).json({
+        status: "fail",
+        message: "Id Not Found"
+      });
+    };
+
+
+    const jobs = await Job.find({ category: id });
+    console.log(jobs);
+
+
+    res.status(200).json({
+      jobs,
+      size: jobs.length,
+      message: "Fetced Data"
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal server error"
+    })
+  }
+}
+
+export const getCategoryWithJobs = async (req, res) => {
+//  console.log("dsfv");
+  
+  try {
+    
+    const categoryIds = await Job.distinct("category");
+
+    
+    const categories = await CategorySchema.find({
+      _id: { $in: categoryIds }
+    });
+    console.log(categories);
+    res.status(200).json({
+      categories,
+      message: "Category Fetch Successfully"
+    })
+    
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal server error"
+    })
+  }
+}

@@ -12,6 +12,7 @@ const UploadJobCard = ({ data, handleData, setShowApplicants ,showapplicants}) =
     } 
     // console.log(data);
 
+  //   console.log(handleData);
      
 
     return (
@@ -71,9 +72,7 @@ const UploadJobCard = ({ data, handleData, setShowApplicants ,showapplicants}) =
             </div>
             <div onClick={()=>navigate(`applicant/${data._id}`)}  className="text-sm pt-10 mt-5 text-red-700 font-bold underline cursor-pointer hover:text-red-500 inline">
                 View Applicatants
-            </div>
-
-             
+            </div> 
         </div>
     );
 };

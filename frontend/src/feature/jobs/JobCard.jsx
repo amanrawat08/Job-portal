@@ -2,8 +2,7 @@ import { MapPin, Clock, Briefcase } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-const JobCard = ({ job }) => {
-  console.log(job);
+const JobCard = ({ job }) => { 
   
   const givenDate = new Date(job.createdAt);
   const today = new Date();
@@ -15,18 +14,18 @@ const JobCard = ({ job }) => {
   const diffTime = today - givenDate;
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-  console.log(diffDays);
+ // console.log(diffDays);
 
   const detailPageHandler = () => {
     navigate(`/jobs/jobDetail/${job._id}`);
   }
 
-
+ 
   const navigate = useNavigate()
 
   const { title, company, experience, salaryMax, workMode, skills, _id, createdAt, location } = job
   return (
-    <div className="border bg-white w-[250px] pl-3 px-4 py-5">
+    <div className="border bg-white w-[250px] pl-3 px-4 py-5  ">
       <div className="flex items-start gap-4">
         <div className="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center text-white text-xl font-bold">
           R

@@ -69,11 +69,7 @@ const EditProfile = () => {
           <div className="mb-6 flex items-center justify-between">
             <h1 className="text-2xl font-semibold">Edit profile</h1>
 
-            <img
-              src="https://i.pravatar.cc/100"
-              alt="profile"
-              className="h-14 w-14 rounded-full object-cover"
-            />
+             
           </div>
 
           {/* Form */}

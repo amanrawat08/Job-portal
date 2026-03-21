@@ -3,22 +3,16 @@ import { useEffect, useState } from "react";
 import { JOB_POST_URL, UPDATE_POSTEDJOB_URL } from "../../utils/comman";
 import toast from "react-hot-toast";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux"; 
+import useRecuiterJobs from "../../hooks/useRecuiterJobs.jsx"
 const CreateJob = () => {
     const { id } = useParams();
+    console.log(id);
+    
     const updateData = useSelector((res) => res?.recuiterJobs?.editJob);
     const categ = useSelector((res) => res?.CategorySlice?.categ);
-
-    const getCategName = ()=> {
-        if(id){
-           const mine =  categ.filter((e)=> e._id ==updateData?.category)
-            return (mine[0].name);
-            
-        }   
-        return null
-
-    }
+    
+     const fetchJobs = useRecuiterJobs()
     
     const token = localStorage.getItem("token");
     const navigate = useNavigate()
@@ -104,7 +98,6 @@ const CreateJob = () => {
     const updateHandler = async (e) => {
         e.preventDefault();
 
-
         try {
             const res = await axios.put(`${UPDATE_POSTEDJOB_URL}/${id}`, formData, {
                 withCredentials: true,
@@ -127,6 +120,8 @@ const CreateJob = () => {
     useEffect(() => {
         if (id && updateData) {
             //  setFormData(updateData)
+            fetchJobs
+            
         } else {
             setFormData({
                 title: "",

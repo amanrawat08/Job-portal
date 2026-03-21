@@ -5,6 +5,8 @@ import axios from "axios";
 export const fetchJobCategories = createAsyncThunk("jobCatgeories/fetch", async (_, { isRejectedWithValue }) => {
     try {
         const res = await axios.get("http://localhost:3000/api/jobs/jobCategories", { withCredentials: true });
+       // console.log(res.data);
+        
         return res.data
     } catch (error) {
         return isRejectedWithValue(error.response.data)

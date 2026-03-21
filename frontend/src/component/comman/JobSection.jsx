@@ -4,24 +4,53 @@ import JobCard from "../../feature/jobs/JobCard";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobCategories } from "../../redux/jobCategorySlice ";
+import axios from "axios";
 function JobSection() {
-  const [category, setCategory] = useState("");
-  const [categoryShown, setCategoryShown] = useState([]);
-
-  //our new code....
+  const [category, setCategory] = useState([])
+  const [showCategory, setShowCategory] = useState("");
+  const [jobs, setJobs] = useState([]);
+  const initialJobs = useSelector((state)=>state.jobs.job);
+  // our new code....
   const dispatch = useDispatch();
   const { data, loading } = useSelector(
     (state) => state.jobCategories
   );
 
+  const getCategory = async () => {
+
+    try {
+      const res = await axios.get(`http://localhost:3000/api/jobs/getCategoryWithJobs`, {
+      withCredentials: true
+    });
+
+    setCategory(res.data.categories);
+    } catch (error) {
+      console.log(error);
+      
+    }
+
+    
+  }
+
   useEffect(() => {
-    dispatch(fetchJobCategories());
-  }, [dispatch]);
+    getCategory()
+  }, [initialJobs]);
+
   
-  const categHandler = (id) => {
-    setCategory(id)
-    let categories = data?.categories?.filter((value) => value._id === category);
-    setCategoryShown(categories[0]?.jobs);
+
+  const categHandler = async (id) => {
+    setShowCategory(id);
+    try {
+     // console.log(id);
+      const res = await axios.get(`http://localhost:3000/api/jobs/getJobByCategories/${id}`, {
+        withCredentials: true
+      });
+      setJobs(res.data.jobs);
+
+    } catch (error) {
+      console.log(error);
+
+    }
 
   }
 
@@ -33,24 +62,33 @@ function JobSection() {
           <p className="subTitle">To choose your trending job dream & to make future bright.</p>
         </div>
         <div className="categ-btn flex flex-wrap gap-3 justify-center mb-10">
-          {
-            data?.categories?.map((categ, index) => {
 
-              return <button key={index} onClick={() => categHandler(categ._id)}>{categ._id}</button>
+          {
+            category.map((categ, index) => {
+              if(index<=18){
+                return <button key={index} className="text-sm " onClick={() => categHandler(categ._id)}>{categ.name}</button>
+              }
 
             })
           }
 
-
         </div>
-        <div className="categ-job grid grid-cols-4 gap-6">
+        <div className="categ-job grid grid-cols-4 gap-6  ">
           {
-            categoryShown?.map((job, index) => {
+            jobs && jobs.length > 0 ? jobs?.map((job, index) => {
               return <JobCard key={index} job={job} />
 
-            })
+            }) : !showCategory &&
+              initialJobs?.map((job, index) => {
+                if(index>8){
+                  return
+                }
+                return <JobCard key={index} job={job} />
+              })
+          }
 
-
+          {
+            showCategory && jobs.length <= 0 && <h1>No jobs Found</h1>
           }
 
         </div>

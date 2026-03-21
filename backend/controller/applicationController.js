@@ -123,9 +123,14 @@ export const getApplicantForJob = async (req, res) => {
       .populate("applicant", "name email resume")
       .populate("job", "title")
       .sort({ createdAt: -1 });
+
+    const jobTitle = await Job.findOne({_id:jobId});
+
+   //console.log(jobTitle.title);
+    
  
 
-      console.log(applicants);
+    //  console.log(applicants);
       
        
       
@@ -135,6 +140,7 @@ export const getApplicantForJob = async (req, res) => {
       success: true,
       count: applicants.length,
       applicants,
+      jobTitle: jobTitle.title
     });
   } catch (error) {
     res.status(500).json({

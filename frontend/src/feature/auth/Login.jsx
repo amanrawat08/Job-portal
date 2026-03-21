@@ -36,11 +36,11 @@ const Login = () => {
       dispatch(setUserDetails(res?.data?.user));
       setEmail("");
       setPassword("");
-      if (role === "recruiter") {
-        navigate('/recuiter') 
-      } else { 
-        navigate('/home');
+      if (res?.data?.user) { 
+        navigate('/');
       }
+         
+       
       toast.success(res.data.message);
     } catch (error) {
     //  console.log(error.response); // 👈 IMPORTANT

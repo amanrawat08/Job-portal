@@ -10,6 +10,7 @@ const ShowApplicantPopUp = () => {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate()
   const [applicants, setApplicants] = useState([]);
+  const [jobTitle, setJobTitle] = useState("");
   const token = localStorage.getItem("token");
 
   // console.log(`${APPLICANT_JOB_URL}/${id}`);
@@ -34,7 +35,7 @@ const ShowApplicantPopUp = () => {
 
 
       setApplicants(res?.data?.applicants);
-
+      setJobTitle(res?.data?.jobTitle)
 
     } catch (error) {
       console.log(
@@ -46,7 +47,7 @@ const ShowApplicantPopUp = () => {
 
   const updateApplicantStatus = async (e, userId) => {
 
-    console.log(userId);
+   //console.log(userId);
 
 
     try {
@@ -85,7 +86,7 @@ const ShowApplicantPopUp = () => {
     px-4 py-4
     ">
       <div className="title mb-4 text-2xl font-semiBold font-mono">
-        Frontend Developer
+        {jobTitle}
       </div>
       <div className="h-[90%] overflow-hidden overflow-y-auto ">
         <ul className="">
