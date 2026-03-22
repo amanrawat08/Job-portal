@@ -19,7 +19,7 @@ function JobSection() {
   const getCategory = async () => {
 
     try {
-      const res = await axios.get(`http://localhost:3000/api/jobs/getCategoryWithJobs`, {
+      const res = await axios.get(`https://job-portal-6cpj.onrender.com/api/jobs/getCategoryWithJobs`, {
       withCredentials: true
     });
 
