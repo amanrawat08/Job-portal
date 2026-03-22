@@ -41,7 +41,7 @@ const FiltersSection = ({ setJobs }) => {
 
     useEffect(() => {
         const fetchJobs = async () => {
-            const res = await axios.get("http://localhost:3000/api/jobs/getFilteredJobs", {
+            const res = await axios.get("https://job-portal-web-coral.vercel.app/api/jobs/getFilteredJobs", {
                 params: {
                     category,
                     jobType,
