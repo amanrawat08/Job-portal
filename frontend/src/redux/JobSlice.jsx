@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async (_, { rejectWithValue }) => {
     try {
-        const res = await axios.get("http://localhost:3000/api/jobs", {
+        const res = await axios.get("https://job-portal-6cpj.onrender.com/api/jobs", {
             withCredentials: true
         })
         return res.data.jobs;
@@ -18,7 +18,7 @@ export const fetchJobById = createAsyncThunk("job/FetchJobsById", async (id,{  r
     try {
     //    console.log(id);
         
-        const res = await axios.get(`http://localhost:3000/api/jobs/fetchJob/${id}`);
+        const res = await axios.get(`https://job-portal-6cpj.onrender.com/api/jobs/fetchJob/${id}`);
         
         
         return res.data.job;

@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchingCateg = createAsyncThunk("fetch/categ", async (_,{ rejectWithValue  }) => {
     try {
-        const res = await axios.get("http://localhost:3000/api/category",{
+        const res = await axios.get("https://job-portal-6cpj.onrender.com/api/category",{
             withCredentials:true
         });
          

@@ -10,7 +10,7 @@ export const loadUser = createAsyncThunk(
       if (!token) throw new Error("No token");
 
       const res = await axios.get(
-        "http://localhost:3000/api/users/me",
+        "https://job-portal-6cpj.onrender.com/api/users/me",
         {
           headers: {
             Authorization: `Bearer ${token}`,
