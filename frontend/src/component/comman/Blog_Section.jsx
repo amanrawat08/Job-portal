@@ -1,0 +1,202 @@
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+const NextArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 bg-white shadow p-2 rounded-full cursor-pointer hover:bg-teal-500 hover:text-white"
+  >
+    <ChevronRight size={20} />
+  </div>
+);
+
+const PrevArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 bg-white shadow p-2 rounded-full cursor-pointer hover:bg-teal-500 hover:text-white"
+  >
+    <ChevronLeft size={20} />
+  </div>
+);
+
+
+
+
+function Blog_Section() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    nextArrow: <nextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 640,
+        settings: { slidesToShow: 1 },
+      },
+    ],
+  };
+  return (
+    <section className="my-11 ">
+      <div className="max-w-7xl mx-auto  px-8 sm:px-6 lg:px-8 py-12 ">
+        <div className="text-center mb-12">
+          <h1 className="heading capitalize">
+            From the
+            <span className="heading-design"> blog</span>{" "}
+          </h1>
+          <p className="subTitle">
+            To choose your trending job dream & to make future bright.
+          </p>
+        </div>
+        <div className="mx-auto mt-14  lg:mx-0  " >
+          <div className="slider-container">
+            <Slider {...settings}>
+              <div className="p-4">
+                <article className="flex max-w-xl flex-col items-start justify-between border px-5 py-5 rounded-sm">
+                  <div className="flex items-center gap-x-4 text-xs">
+                    <time dateTime="2020-03-16" className="text-gray-500">
+                      Mar 16, 2020
+                    </time>
+                    <a
+                      href="#"
+                      className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
+                    >
+                      Marketing
+                    </a>
+                  </div>
+                  <div className="group relative grow">
+                    <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                      <a href="#">
+                        <span className="absolute inset-0"></span>
+                        Boost your conversion rate
+                      </a>
+                    </h3>
+                    <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">
+                      Illo sint voluptas. Error voluptates culpa eligendi. Hic vel
+                      totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed
+                      exercitationem placeat consectetur nulla deserunt vel. Iusto
+                      corrupti dicta.
+                    </p>
+                  </div>
+                  <div className="relative mt-8 flex items-center gap-x-4 justify-self-end">
+                    <img
+                      src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                      className="size-10 rounded-full bg-gray-50"
+                    />
+                    <div className="text-sm/6">
+                      <p className="font-semibold text-gray-900">
+                        <a href="#">
+                          <span className="absolute inset-0"></span>
+                          Michael Foster
+                        </a>
+                      </p>
+                      <p className="text-gray-600">Co-Founder / CTO</p>
+                    </div>
+                  </div>
+                </article>
+
+              </div>
+              <div className="p-4">
+                <article className="flex max-w-xl flex-col items-start justify-between border px-5 py-5 rounded-sm">
+                  <div className="flex items-center gap-x-4 text-xs">
+                    <time dateTime="2020-03-10" className="text-gray-500">
+                      Mar 10, 2020
+                    </time>
+                    <a
+                      href="#"
+                      className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
+                    >
+                      Sales
+                    </a>
+                  </div>
+                  <div className="group relative grow">
+                    <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                      <a href="#">
+                        <span className="absolute inset-0"></span>
+                        How to use search engine optimization to drive sales
+                      </a>
+                    </h3>
+                    <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">
+                      Optio cum necessitatibus dolor voluptatum provident commodi et.
+                      Qui aperiam fugiat nemo cumque.
+                    </p>
+                  </div>
+                  <div className="relative mt-8 flex items-center gap-x-4 justify-self-end">
+                    <img
+                      src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                      className="size-10 rounded-full bg-gray-50"
+                    />
+                    <div className="text-sm/6">
+                      <p className="font-semibold text-gray-900">
+                        <a href="#">
+                          <span className="absolute inset-0"></span>
+                          Lindsay Walton
+                        </a>
+                      </p>
+                      <p className="text-gray-600">Front-end Developer</p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div className="p-4">
+                <article className="flex max-w-xl flex-col items-start justify-between border px-5 py-5 rounded-sm">
+                  <div className="flex items-center gap-x-4 text-xs">
+                    <time dateTime="2020-02-12" className="text-gray-500">
+                      Feb 12, 2020
+                    </time>
+                    <a
+                      href="#"
+                      className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
+                    >
+                      Business
+                    </a>
+                  </div>
+                  <div className="group relative grow">
+                    <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                      <a href="#">
+                        <span className="absolute inset-0"></span>
+                        Improve your customer experience
+                      </a>
+                    </h3>
+                    <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">
+                      Cupiditate maiores ullam eveniet adipisci in doloribus nulla
+                      minus. Voluptas iusto libero adipisci rem et corporis. Nostrud
+                      sint anim sunt aliqua. Nulla eu labore irure incididunt velit
+                      cillum quis magna dolore.
+                    </p>
+                  </div>
+                  <div className="relative mt-8 flex items-center gap-x-4 justify-self-end">
+                    <img
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                      className="size-10 rounded-full bg-gray-50"
+                    />
+                    <div className="text-sm/6">
+                      <p className="font-semibold text-gray-900">
+                        <a href="#">
+                          <span className="absolute inset-0"></span>
+                          Tom Cook
+                        </a>
+                      </p>
+                      <p className="text-gray-600">Director of Product</p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </Slider>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Blog_Section;
