@@ -6,21 +6,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchJobById } from "../../redux/JobSlice";
 import { useEffect } from "react";
 
-const JobDetails = ()=>{
-    const {id} = useParams()
+const JobDetails = () => {
+    const { id } = useParams()
     const dispatch = useDispatch();
 
-    const job = useSelector((state)=>state?.jobs?.jobDetails?.job);
-    const recuiterData = useSelector((state)=>state?.jobs?.jobDetails?.rData);
-    const loading = useSelector((state)=>state?.jobs?.loading);
+    const job = useSelector((state) => state?.jobs?.jobDetails?.job);
+    const recuiterData = useSelector((state) => state?.jobs?.jobDetails?.rData);
+    const loading = useSelector((state) => state?.jobs?.loading);
 
     useEffect(() => {
-        if(id){
+        if (id) {
             dispatch(fetchJobById(id))
         }
     }, [id, dispatch])
 
-    if(loading){
+    if (loading) {
         return (
             <p className="h-[100vh] flex justify-center items-center">
                 <span>Loading</span>
@@ -30,31 +30,27 @@ const JobDetails = ()=>{
 
     return (
         <>
-            <Banner/>
-            <div className="max-w-7xl mx-auto px-8 sm:px-6 lg:px-8 py-12 flex">
-                <div className="w-[80%]">
-                    <LeftDetails
-                        title={job?.title}
-                        company={job?.company}
-                        location={job?.location}
-                        jobType={job?.jobType}
-                        salaryMin={job?.salaryMin}
-                        salaryMax={job?.salaryMax}
-                        createAt={job?.createdAt}
-                        description={job?.description}
-                        responsibilities={job?.responsibilities}
-                        requirements={job?.requirements}
-                    />
-                </div>
+            <Banner data={job?.title} />
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
 
-                <div className="w-[20%]">
-                    <RightDetails
-                        workMode={job?.workMode}
-                        status={job?.status}
-                        rname={recuiterData?.name}
-                        remail={recuiterData?.email}
-                        jobid={id}
-                    />
+                <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
+
+                    {/* Left */}
+                    <div className="w-full lg:w-[70%]">
+                        <LeftDetails {...job} />
+                    </div>
+
+                    {/* Right */}
+                    <div className="w-full lg:w-[30%]">
+                        <RightDetails
+                            workMode={job?.workMode}
+                            status={job?.status}
+                            rname={recuiterData?.name}
+                            remail={recuiterData?.email}
+                            jobid={id}
+                        />
+                    </div>
+
                 </div>
             </div>
         </>

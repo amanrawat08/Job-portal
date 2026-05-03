@@ -11,9 +11,9 @@ const FilterJobs = () => {
     <div>
       <Banner data={"Search Jobs"} />
       <div className="max-w-7xl mx-auto  px-8 sm:px-6 lg:px-8 py-12 flex">
-        <div className="flex w-full gap-6 ">
+        <div className="flex w-full gap-6 flex-wrap">
           <FiltersSection setJobs={setJobs} setLoading={setLoading} />
-          <div className="w-[70%] h-full border rounded-sm border-t-[4px] border-t-[#5bb907] bg-blue-50">
+          <div className="md:w-[65%] w-[100%] xl:h-full border rounded-sm border-t-[4px] border-t-[#5bb907] bg-blue-50">
             <div className="flex    p-3 items-start gap-3 flex-wrap">
               {loading && <div>Loading..</div>}
               {!loading && jobs.length > 0 &&

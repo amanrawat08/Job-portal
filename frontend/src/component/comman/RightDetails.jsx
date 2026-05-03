@@ -38,7 +38,7 @@ const RightDetails = ({ workMode, status, rname, remail, jobid }) => {
     <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-2xl p-6 border border-gray-100">
 
       {/* Apply Button */}
-      <div className='flex justify-end mb-4'>
+      <div className='flex xl:justify-end mb-4'>
         <div
           className="apply bg-[#5bb907] rounded-full font-semibold text-white px-6 py-3 
       hover:bg-[#032f59] transition-all duration-200 ease-in-out 

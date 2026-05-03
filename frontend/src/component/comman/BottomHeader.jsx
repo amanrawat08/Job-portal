@@ -56,6 +56,7 @@ function BottomHeader() {
               )
             }
 
+            
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
           </ul>
@@ -72,12 +73,16 @@ function BottomHeader() {
                 </Link>
               )
             }
-
+            {
+                (user  && <h5>Hey, {user?.name}</h5>)
+                
+              }
             {
               user && <AccountCenter />
             }
 
             <div>
+              
               {
                 (!user || user?.role === "recruiter") && user?.role !== "jobseeker" && (
                   <Link
@@ -88,9 +93,7 @@ function BottomHeader() {
                   </Link>
                 )
               }
-              {
-                <h5>Hey, {user?.name}</h5>
-              }
+              
             </div>
           </div>
 
@@ -113,11 +116,22 @@ function BottomHeader() {
 
 
             <Link to="/about" onClick={() => toggleMenu()}>About</Link>
+             {
+                (!user || user?.role === "recruiter") && user?.role !== "jobseeker" && (
+                  <Link
+                    to={user?.role === "recruiter" ? "/createJob" : "/login"}
+                    className="      "
+                  >
+                    Post A Job
+                  </Link>
+                )
+              }
             <Link to="/contact" onClick={() => toggleMenu()}>Contact</Link>
-            {
+
+             {
               user?.role !== "recruiter" ? (
                 <>
-                  <span className="font-medium">Find Jobs</span>
+                  <span className="font-medium">Find Jobs Category</span>
                   <div className="grid grid-cols-2 gap-2 h-52 overflow-y-scroll border p-2 rounded">
                     {
                       category?.map((categ) => (
@@ -136,9 +150,12 @@ function BottomHeader() {
                   </div>
                 </>
               ) : (
-                <Link to="/showPostedJobs" onClick={() => toggleMenu()}>Show Posted Jobs</Link>
+                <Link to="/showPostedJobs" onClick={() => toggleMenu()}>Show Posted Jobs </Link>
               )
             }
+
+           
+           
 
 
           </ul>
@@ -165,7 +182,7 @@ function BottomHeader() {
 
           }
 
-          {
+          {/*
             (!user || user?.role === "recruiter") && user?.role !== "jobseeker" && (
               <Link
                 to={user?.role === "recruiter" ? "/createJob" : "/login"}
@@ -174,7 +191,7 @@ function BottomHeader() {
                 Post A Job
               </Link>
             )
-          }
+          */}
         </div>
 
       </div>

@@ -61,7 +61,7 @@ const FiltersSection = ({ setJobs, setLoading }) => {
     }, [category, jobType, salaryMin]); 
 
     return (
-        <div className="w-[30%] border
+        <div className="xl:w-[30%] w-full border
                 px-5 py-6 rounded-sm border-t-[4px] border-t-[#5bb907] bg-blue-50
                 ">
             <div>
