@@ -1,6 +1,7 @@
  
- //export const BACKEND_URL = `https://job-portal-opp.onrender.com`
-export const BACKEND_URL = `http://localhost:3000`
+ // export const BACKEND_URL = `https://job-portal-opp.onrender.com`
+// export const BACKEND_URL = `http://localhost:3000`
+export const BACKEND_URL = `https://job-portal-0zcn.onrender.com/`
 export const REGISTER_USER_URL = `${BACKEND_URL}/api/users/register`;
 export const LOGIN_USER_URL = `${BACKEND_URL}/api/users/login`;
 export const JOB_POST_URL = `${BACKEND_URL}/api/jobs`;
