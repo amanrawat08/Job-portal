@@ -9,7 +9,7 @@ const app = express();
 
  
 app.use(cors({
-  origin: "https://job-portal-0zcn.onrender.com/",
+  origin: "https://job-portal-red-six.vercel.app/",
   credentials: true
 }));
 app.use(express.json());
